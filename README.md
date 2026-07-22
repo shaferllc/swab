@@ -85,14 +85,39 @@ leave your desk in costume.
   It installs to `/usr/local/bin` when that's writable and `~/.local/bin`
   otherwise; Swab tells you which, and whether it's on your `PATH`.
 
+## Install
+
+Download the `.dmg` from the [latest release][releases], open it, and drag
+`Swab.app` onto the `Applications` folder beside it. One universal build
+covers Apple Silicon and Intel; there's a `.zip` too, if you prefer it.
+
+Swab is ad-hoc signed rather than notarized, so macOS quarantines it on
+download and refuses the first launch. Allow it once under **System Settings →
+Privacy & Security → Open Anyway**, or clear the flag yourself:
+
+```
+xattr -d com.apple.quarantine /Applications/Swab.app
+```
+
+[releases]: https://github.com/shaferllc/swab/releases/latest
+
 ## Build
 
 ```
 ./make-app.sh
 ```
 
-Builds a release binary, generates the icon, assembles `Swab.app`, installs it
-to /Applications, and launches it.
+Builds a release binary for this Mac, generates the icon, assembles
+`Swab.app`, installs it to /Applications, and launches it. Nothing is
+downloaded, so there's no quarantine flag to clear.
+
+```
+./make-app.sh --dist
+```
+
+Builds a *universal* binary instead and packages `dist/Swab-<version>.zip` and
+`dist/Swab-<version>.dmg`. Pushing a `v*` tag runs the same script on CI and
+attaches both to a GitHub release.
 
 ## Permissions
 
