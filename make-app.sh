@@ -25,8 +25,8 @@ cat > "$APP/Contents/Info.plist" <<'PLIST'
     <key>CFBundleName</key>                 <string>Swab</string>
     <key>CFBundleDisplayName</key>          <string>Swab</string>
     <key>CFBundleIdentifier</key>           <string>com.tomshafer.swab</string>
-    <key>CFBundleVersion</key>              <string>1</string>
-    <key>CFBundleShortVersionString</key>   <string>0.1</string>
+    <key>CFBundleVersion</key>              <string>2</string>
+    <key>CFBundleShortVersionString</key>   <string>0.2</string>
     <key>CFBundleExecutable</key>           <string>Swab</string>
     <key>CFBundlePackageType</key>          <string>APPL</string>
     <key>CFBundleSupportedPlatforms</key>   <array><string>MacOSX</string></array>
@@ -36,6 +36,15 @@ cat > "$APP/Contents/Info.plist" <<'PLIST'
     <key>LSUIElement</key>                  <true/>
     <key>NSHighResolutionCapable</key>      <true/>
     <key>NSHumanReadableCopyright</key>     <string>© 2026 Tom Shafer</string>
+
+    <!-- The `swab` command-line tool drives the app through this scheme. -->
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleURLName</key>          <string>com.tomshafer.swab.command</string>
+            <key>CFBundleURLSchemes</key>       <array><string>swab</string></array>
+        </dict>
+    </array>
 </dict>
 </plist>
 PLIST

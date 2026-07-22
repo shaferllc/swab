@@ -8,7 +8,7 @@ struct AppChoice: Identifiable, Hashable {
     var id: pid_t { pid }
 }
 
-enum PlacementPreset: String, CaseIterable {
+enum PlacementPreset: String, CaseIterable, Codable {
     case centered16x10 = "Centered 16:10"
     case centered16x9 = "Centered 16:9"
     case goldenLeft = "Golden-ratio left"
