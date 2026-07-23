@@ -2,13 +2,15 @@
 # Usage:
 #   ./make-app.sh          build for this Mac, install to /Applications, launch
 #   ./make-app.sh --dist   build a universal dist/Swab.app plus a .zip and .dmg
-# VERSION=x.y.z overrides the bundle version (defaults to 0.2).
+#
+# The version comes from the VERSION file; VERSION=x.y.z in the environment
+# overrides it, which is how the release workflow stamps a build.
 set -euo pipefail
 cd "$(dirname "$0")"
 
 DIST=0
 [ "${1:-}" = "--dist" ] && DIST=1
-SHORT_VERSION="${VERSION:-0.2}"
+SHORT_VERSION="${VERSION:-$(tr -d '[:space:]' < VERSION 2>/dev/null || echo 0.1.0)}"
 
 if [ "$DIST" = "1" ]; then
   # Anything people download has to run on both architectures — an arm64-only
